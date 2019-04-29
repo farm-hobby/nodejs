@@ -24,6 +24,8 @@
 - [Utilizando o Sistema de Módulos do Node.js](#utilizando-o-sistema-de-m%C3%B3dulos-do-nodejs)
     - [Primeira Forma](#primeira-forma)
     - [Segunda Forma](#segunda-forma)
+    - [Terceiro Forma](#terceiro-forma)
+- [Referências](#refer%C3%AAncias)
 
 
 # Como a Web Funciona
@@ -325,7 +327,7 @@ const server = http.createServer(routes);
 server.listen(3000);
 ```
 
-Poderiamos exportar os módulos de duas outras formas:
+Poderiamos exportar os módulos de outras formas:
 
 ### Primeira Forma
 
@@ -341,3 +343,13 @@ module.exports = {
 };
 ```
 
+### Terceiro Forma
+
+```javascript
+exports.handler = handlerRequests;
+```
+
+# Referências
+
+- https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/
+- https://nodejs.org/en/docs/guides/dont-block-the-event-loop/
