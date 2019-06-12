@@ -4,6 +4,9 @@
 
 - [Entendendo NPM Scripts](#entendendo-npm-scripts)
 - [Instalando Pacotes de Terceiros](#instalando-pacotes-de-terceiros)
+  - [Diferença entre --save e --save-dev](#diferen%C3%A7a-entre---save-e---save-dev)
+    - [--save](#save)
+    - [--save-dev](#save-dev)
 - [Entendendo diferentes tipos de erros](#entendendo-diferentes-tipos-de-erros)
     - [Syntax Errors](#syntax-errors)
     - [Runtime Errors](#runtime-errors)
@@ -42,21 +45,31 @@ scripts chamados `start` e `start-server`:
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
-    "start-server": "node app.js"
+    "serve": "nodemon app.js"
   }
 }
 ```
 
 Existe uma diferença para executar os dois comandos, com `start` podemos executa-lo
-digitando `npm start`, pois `start` é um script npm nativo, agora `start-server` não existe nativamente
+digitando `npm start`, pois `start` é um script npm nativo, agora `serve` não existe nativamente
 nos scripts do npm, então é necessário utilizar o comando `npm run` antes do nosso script customizado,
-assim: `npm run start-server`;
+assim: `npm run serve`;
 
 # Instalando Pacotes de Terceiros
 
 - npm install nodemon --save-dev
-- difference between --save --save-dev -g
--
+
+## Diferença entre --save e --save-dev
+
+### --save
+
+`--save` adiciona o pacote como uma dependência do projeto, ou seja, são pacotes necessários para rodar a sua aplicação,
+então, eles devem ser instalados em produção.
+
+### --save-dev
+
+`--save-dev` adiciona os pacotes como *dependências de desenvolvimento*, ou seja, são ferramentas e aplicações utilizadas apenas
+no processo de desenvolvimento da aplicação, então, esses pacotes não sobre para a produção. 
 
 # Entendendo diferentes tipos de erros
 
@@ -129,3 +142,9 @@ res.end();
 ```
 
 # Erros lógicos
+
+Erros lógicos estão mais relacionados a erros cometidos por humanos, onde não existe erros de sintax ou de execução,
+um exemplo simples é transformar uma `string` um `array` e pegar o valor da posição errada, inserindo o indice errado.
+
+Para nos ajudar com isso utilizamos ferramentas de `debug`, o editor que estamos utilizando é o VSCODE que possui um módulo
+especializado em debugar códigos, vamos seguir o tutorial deste reposiótio: https://github.com/microsoft/vscode-recipes/tree/master/nodemon
