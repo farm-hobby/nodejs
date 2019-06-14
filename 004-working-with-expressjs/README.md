@@ -138,5 +138,5 @@ app.use('/add-product', (req, res) => {
 
 Aqui você pode ver que utilizamos um método extendido pelo Express chamado `res.redirect()`,
 onde podemos redirecionar o cliente para outra rota e caso não configurarmos o status ele
-configura para o status `302` automaticamente.
+configura para o status `302 (Found)` automaticamente.
 
