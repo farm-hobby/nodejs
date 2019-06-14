@@ -64,7 +64,7 @@ app.use((req, res, next) => {
 No exemplo acima inserimos um HTML e ele automaticamente configura informações como:
 `Content-Type: text/html; charset=utf-8`
 
-Se você observar bem, não chamado a função `next()` no final e não devemos, estamos fornecendo outra
+Se você observar bem, não chamamos a função `next()` no final e não devemos, estamos fornecendo outra
 alternativa, estamos enviando uma *resposta*.
 
 ## ExpressJS - Por trás das cenas
