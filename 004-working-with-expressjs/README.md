@@ -2,149 +2,132 @@
 
 ### Sumario
 
-- [Entendendo NPM Scripts](#entendendo-npm-scripts)
-- [Instalando Pacotes de Terceiros](#instalando-pacotes-de-terceiros)
-  - [Diferença entre --save e --save-dev](#diferen%C3%A7a-entre---save-e---save-dev)
-    - [--save](#save)
-    - [--save-dev](#save-dev)
-- [Entendendo diferentes tipos de erros](#entendendo-diferentes-tipos-de-erros)
-    - [Syntax Errors](#syntax-errors)
-    - [Runtime Errors](#runtime-errors)
-    - [Logical Errors](#logical-errors)
-- [Encontrando e Corrigindo erros de syntax](#encontrando-e-corrigindo-erros-de-syntax)
-- [Lidando com erros de execução](#lidando-com-erros-de-execu%C3%A7%C3%A3o)
-- [Erros lógicos](#erros-l%C3%B3gicos)
+- [O que é o ExpressJS](#o-que-é-o-expressjs)
 
 
 # Entendendo NPM Scripts
 
-Para criar um `package.json` podemos entrar na nossa linha de comando e digitar: `npm init -y`,
-iremos gerar o arquivo com a seguinte estrutura:
+É um framework criado com NodeJS para facilitar a construção de Web apps.
 
-```json
-{
-  "name": "003-debugando-e-desenvolvimento-simplificado",
-  "version": "1.0.0",
-  "description": "[Home](../README.md) / Entendendo o básico",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "Daniel Simão",
-  "license": "ISC"
-}
-```
+# Instalando o ExpressJS
 
-Veja que existe uma chave chamada `scripts`, com ela podemos criar nossos próprios
-comandos e executar via `npm`, por exemplo rodar nossa aplicação, vamos adicionar dois novos
-scripts chamados `start` e `start-server`:
+Para instalar o ExpressJS é simples, basta inserir o seguinte comando: `npm install --save express`.
 
-```json
-{
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js",
-    "serve": "nodemon app.js"
-  }
-}
-```
+## Configurando o ExpressJS
 
-Existe uma diferença para executar os dois comandos, com `start` podemos executa-lo
-digitando `npm start`, pois `start` é um script npm nativo, agora `serve` não existe nativamente
-nos scripts do npm, então é necessário utilizar o comando `npm run` antes do nosso script customizado,
-assim: `npm run serve`;
-
-# Instalando Pacotes de Terceiros
-
-- npm install nodemon --save-dev
-
-## Diferença entre --save e --save-dev
-
-### --save
-
-`--save` adiciona o pacote como uma dependência do projeto, ou seja, são pacotes necessários para rodar a sua aplicação,
-então, eles devem ser instalados em produção.
-
-### --save-dev
-
-`--save-dev` adiciona os pacotes como *dependências de desenvolvimento*, ou seja, são ferramentas e aplicações utilizadas apenas
-no processo de desenvolvimento da aplicação, então, esses pacotes não sobre para a produção. 
-
-# Entendendo diferentes tipos de erros
-
-### Syntax Errors
-
-São erros de syntaxe, como esquecer um ponto e virgula, esquecer de fechar alguma
-declaração ou parenteses
-
-
-### Runtime Errors
-
-Erros que quebram a execução da aplicação;
-
-
-### Logical Errors
-
-A aplicação não funciona da maneira que deveria e não realiza nenhum alerta.
-
-
-# Encontrando e Corrigindo erros de syntax
-
-Exemplo de error de syntax:
+Agora vamos configurar nossa aplicação:
 
 ```javascript
-cons server = http.createServer(routes.handler);
+// Node Modules
+const http      = require('http');
+
+// 3º Part Modules
+const express   = require('express');
+
+// Application
+const app = express();
+const server = http.createServer(app);
+
+server.listen(4000);
 ```
 
-Aqui vemos que a keyword `cons` não existe e ocasionará um erro de syntaxe (`Error Syntax`);
+## Adicionando Middlewares
 
-Exemplo corrigido:
+Com os middlewares conseguimos interceptar requisições e respostas,
+assim conseguimos tratar os dados de maneira isolada, veja o conceito:
+
+- Request 
+- Middleware [ (req, res, next) => { ... } ] -> next()
+- Middleware [ (req, res, next) => { ... } ] -> res.send()
+- Response
+
+Um `Middleware` é nada mais que uma função que recebe a `request`, uma `response` e uma função para ir para o proximo `Middleware` chamada `next`, Veja um exemplo:
 
 ```javascript
-cons server = http.createServer(routes.handler);
+app.use((req, res, next) => {
+    // ...
+    next();
+});
 ```
+## Como os Middlewares funcionam
 
-# Lidando com erros de execução
-
-Configuramos uma resposta e não terminamos sua execução após o envio,
-existe uma resposta padrão que é executada caso entre na rota padrão, isso
-acarreta em um erro.
-
-Isso acontece pois estamos configurando um novo header e realizando um novo
-envio de resposta, o node dispara um erro, pois sabe que só podemos realizar um
-envio de resposta por get realizado:
+O Express faz algumas configurações para nós baseados nas respostas que queremos enviar
+para o cliente, como por exemplo o Express adiciona na `response` um método chamado `send`,
+onde passamos um valor e ele automaticamente configura certos `Headers` como por exemplo: `Content-Type` e `Status`.
 
 ```javascript
-if (url === '/users') {
-    //.. some code
-    res.end();
-}
-
-res.setHeader();
-res.write(...);
-res.end();
+app.use((req, res, next) => {
+    res.json('<h1>Hello from Express!</h1>')
+})
 ```
 
-Para Corrigir esse error, devemos terminar o envio adicionando um `return`
-antes de `res.end` ou envolvendo a resposta padrão dentro de alguma condicional:
+No exemplo acima inserimos um HTML e ele automaticamente configura informações como:
+`Content-Type: text/html; charset=utf-8`
 
+Se você observar bem, não chamado a função `next()` no final e não devemos, estamos fornecendo outra
+alternativa, estamos enviando uma *resposta*.
+
+## ExpressJS - Por trás das cenas
+
+Observando o código fonte do Express conseguimos entender o porque o método `send`,
+configura automaticamente o `Content-Type`, se ele encontra uma string ele realizada
+essa configuração para nós e assim faz com outros tipos também.
+
+Outra coisa importante é que não precisamos iniciar um servidor manualmente, oe Express
+possui um método chamado `listen` que executamos diretamente de sua instancia `app` e passamos
+apenas a porta a ser ouvida, assim salvamos algum código.
+
+## Manipulando diferentes rotas
+
+O método `app.use()` possui 4 formas diferentes de ser utilizado, uma delas ja vimos anteriormente,
+onde podemos passar um middleware para qualquer requisição e agora veremos um outra forma onde podemos
+informar uma *rota* e atribuir um Middlewares em específico:
 
 ```javascript
-if (url === '/users') {
-    //.. some code
-    return res.end();
-}
-
-res.setHeader();
-res.write(...);
-res.end();
+app.use('/', (req, res) => {
+    // .. carregar home do site
+});
 ```
 
-# Erros lógicos
+Uma coisa importante é entender que a ordem em que definimos nossas rotas afetam o modo em que 
+são acessadas, por exemplo, se eu quiser acessar a rota `/contato`, porém ela foi definida
+após a rota ráiz, o cliente sempre cairá na rota ráiz, vamos ver como definir nossas rotas na 
+sequencia certa:
 
-Erros lógicos estão mais relacionados a erros cometidos por humanos, onde não existe erros de sintax ou de execução,
-um exemplo simples é transformar uma `string` um `array` e pegar o valor da posição errada, inserindo o indice errado.
+```javascript
+app.use('/contato', (req, res) => {
+    // .. carregar a página de contato
+});
 
-Para nos ajudar com isso utilizamos ferramentas de `debug`, o editor que estamos utilizando é o VSCODE que possui um módulo
-especializado em debugar códigos, vamos seguir o tutorial deste reposiótio: https://github.com/microsoft/vscode-recipes/tree/master/nodemon
+app.use('/', (req, res) => {
+    // .. carregar home do site
+});
+```
+Caso nosso cliente inserir a rota `/` ela não combinará com a rota `/contato`, então 
+a rota `/contato` é ignorada e o express vai de rota em rota até encontrar uma rota
+que combine. Se a nossa rota `/` fosse definida antes, todas as rotas caíriam nela, pois todas
+começão com o caracter barra.
+
+Mas porque quando ele terminar de executar a rota `/contato` ele não executa as rota `/`?
+
+Ele não faz isso pelo seguinte motivo, essas são rotas finais e nelas utilizamos o método
+`res.send()` e não o método `next()` do nosso Middleware.
+
+## Parseando Requisições
+
+Podemos capturar e parsear dados encaminhados através de um formulário, o Espress
+cria um atributo chamado `body` diretamente no requisição `req`, e dessa forma não precisamos tratar
+os chunks, porém vamos precisar de um Middleware para tratar os dados para nós, se chama
+`bodyParser`.
+
+Utilizando o bodyParser podemos tratar diversos dados, mas por hora vamos tratar dados que
+são encodados na URL, como os submitados por formulários, o bodyParser tem um método chamado
+`urlencoded` que faz esse trabalho para nós, só precisamos passar um opção para ele não
+extender essa funcionalidade para um outra biblioteca chamada `qs`.
+
+```javascript
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.urlencoded({ extended: false }))
+```
+
