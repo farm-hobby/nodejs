@@ -5,8 +5,8 @@
 - [Entendendo NPM Scripts](#entendendo-npm-scripts)
 - [Instalando Pacotes de Terceiros](#instalando-pacotes-de-terceiros)
   - [Diferença entre:](#diferen%C3%A7a-entre)
-    - [--save](#save)
-    - [--save-dev](#save-dev)
+    - [save](#save)
+    - [save-dev](#save-dev)
 - [Entendendo diferentes tipos de erros](#entendendo-diferentes-tipos-de-erros)
     - [Syntax Errors](#syntax-errors)
     - [Runtime Errors](#runtime-errors)
@@ -61,12 +61,12 @@ assim: `npm run serve`;
 
 ## Diferença entre:
 
-### --save
+### save
 
 `--save` adiciona o pacote como uma dependência do projeto, ou seja, são pacotes necessários para rodar a sua aplicação,
 então, eles devem ser instalados em produção.
 
-### --save-dev
+### save-dev
 
 `--save-dev` adiciona os pacotes como *dependências de desenvolvimento*, ou seja, são ferramentas e aplicações utilizadas apenas
 no processo de desenvolvimento da aplicação, então, esses pacotes não sobre para a produção. 
