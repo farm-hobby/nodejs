@@ -87,7 +87,7 @@ apenas a porta a ser ouvida, assim salvamos algum código.
 ## Manipulando diferentes rotas
 
 O método `app.use()` possui 4 formas diferentes de ser utilizado, uma delas vimos anteriormente,
-onde podemos passar um middleware para qualquer requisição e agora veremos um outra forma onde podemos
+onde podemos passar um Middleware para qualquer requisição e agora veremos um outra forma onde podemos
 informar uma *rota* e atribuir um Middlewares em específico:
 
 ```javascript
