@@ -4,7 +4,7 @@
 
 - [Entendendo NPM Scripts](#entendendo-npm-scripts)
 - [Instalando Pacotes de Terceiros](#instalando-pacotes-de-terceiros)
-  - [Diferença entre --save e --save-dev](#diferen%C3%A7a-entre---save-e---save-dev)
+  - [Diferença entre](#diferen%C3%A7a-entre)
     - [--save](#save)
     - [--save-dev](#save-dev)
 - [Entendendo diferentes tipos de erros](#entendendo-diferentes-tipos-de-erros)
@@ -59,7 +59,7 @@ assim: `npm run serve`;
 
 - npm install nodemon --save-dev
 
-## Diferença entre --save e --save-dev
+## Diferença entre
 
 ### --save
 
