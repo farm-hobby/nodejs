@@ -98,7 +98,7 @@ app.use('/', (req, res) => {
 
 Uma coisa importante é entender que a ordem em que definimos nossas rotas afetam o modo em que 
 são acessadas, por exemplo, se eu quiser acessar a rota `/contato`, porém ela foi definida
-após a rota ráiz, o cliente sempre cairá na rota ráiz, vamos ver como definir nossas rotas na 
+após a rota ráiz `/`, o cliente sempre cairá na rota ráiz, vamos ver como definir nossas rotas na 
 sequencia certa:
 
 ```javascript
@@ -111,7 +111,7 @@ app.use('/', (req, res) => {
 });
 ```
 Caso nosso cliente inserir a rota `/` ela não combinará com a rota `/contato`, então 
-a rota `/contato` é ignorada e o express vai de rota em rota até encontrar uma rota
+a rota `/contato` é ignorada e o Express vai de rota em rota até encontrar uma rota
 que combine. Se a nossa rota `/` fosse definida antes, todas as rotas caíriam nela, pois todas
 começão com o caracter barra.
 
