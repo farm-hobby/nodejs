@@ -44,8 +44,8 @@ Com os middlewares conseguimos interceptar requisições,
 assim conseguimos tratar os dados de maneira isolada, veja o conceito:
 
 - Request 
-- Middleware [ (req, res, next) => { ... } ] -> next()
-- Middleware [ (req, res, next) => { ... } ] -> res.send()
+- Middleware [ (req, res, next) => { next(); } ] -> 
+- Middleware [ (req, res, next) => { res.send(); } ] -> res.send()
 - Response
 
 Um `Middleware` é nada mais que uma função que recebe a `request`, uma `response` e uma função para ir para o próximo `Middleware` chamada `next`, Veja um exemplo:
