@@ -68,7 +68,7 @@ então, eles devem ser instalados em produção.
 
 ### O parametro save-dev
 
-`--save-dev` adiciona os pacotes como *dependências de desenvolvimento*, ou seja, são ferramentas e aplicações utilizadas apenas
+`--save-dev` adiciona os pacotes como **dependências de desenvolvimento**, ou seja, são ferramentas e aplicações utilizadas apenas
 no processo de desenvolvimento da aplicação, então, esses pacotes não sobre para a produção. 
 
 # Entendendo diferentes tipos de erros
