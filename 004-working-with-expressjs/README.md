@@ -48,7 +48,7 @@ assim conseguimos tratar os dados de maneira isolada, veja o conceito:
 - Middleware [ (req, res, next) => { ... } ] -> res.send()
 - Response
 
-Um `Middleware` é nada mais que uma função que recebe a `request`, uma `response` e uma função para ir para o proximo `Middleware` chamada `next`, Veja um exemplo:
+Um `Middleware` é nada mais que uma função que recebe a `request`, uma `response` e uma função para ir para o próximo `Middleware` chamada `next`, Veja um exemplo:
 
 ```javascript
 app.use((req, res, next) => {
