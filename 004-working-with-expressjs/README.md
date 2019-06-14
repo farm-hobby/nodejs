@@ -5,8 +5,8 @@
 - [O que é o ExpressJS](#o-que-%C3%A9-o-expressjs)
   - [Instalando o ExpressJS](#instalando-o-expressjs)
   - [Configurando o ExpressJS](#configurando-o-expressjs)
-  - [Adicionando Middlewares](#adicionando-middlewares)
-  - [Como os Middlewares funcionam](#como-os-middlewares-funcionam)
+  - [Adicionando middlewares](#adicionando-middlewares)
+  - [Como os middlewares funcionam](#como-os-middlewares-funcionam)
   - [Por trás das cenas](#por-tr%C3%A1s-das-cenas)
   - [Manipulando diferentes rotas](#manipulando-diferentes-rotas)
   - [Parseando Requisições](#parseando-requisi%C3%A7%C3%B5es)
@@ -38,7 +38,7 @@ const server = http.createServer(app);
 server.listen(4000);
 ```
 
-## Adicionando Middlewares
+## Adicionando middlewares
 
 Com os middlewares conseguimos interceptar requisições,
 assim conseguimos tratar os dados de maneira isolada, veja o conceito:
@@ -56,7 +56,7 @@ app.use((req, res, next) => {
     next();
 });
 ```
-## Como os Middlewares funcionam
+## Como os middlewares funcionam
 
 O Express faz algumas configurações para nós baseados nas respostas que queremos enviar
 para o cliente, como por exemplo o Express adiciona na `response` um método chamado `send`,
@@ -98,7 +98,7 @@ app.listen(4000);
 
 O método `app.use()` possui 4 formas diferentes de ser utilizado, uma delas vimos anteriormente,
 onde podemos passar um Middleware para qualquer requisição e agora veremos uma outra forma onde podemos
-informar uma *rota* e em seguida atribuir Middlewares em específico para esta rota:
+informar uma *rota* e em seguida atribuir middlewares em específico para esta rota:
 
 ```javascript
 app.use('/', (req, res) => {
