@@ -16,11 +16,10 @@ app.use('/add-product', (req, res, next) => {
 
 app.use('/product', (req, res) => {
     console.log(req.body);
-    res.redirect('/add-product');
+    res.redirect('/');
 });
 
 app.use('/', (req, res, next) => {
-    console.log('I am in another Middleware');
     res.send('<h1>Hello from Express!</h1>');
 });
 

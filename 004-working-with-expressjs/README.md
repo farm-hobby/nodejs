@@ -129,5 +129,14 @@ extender essa funcionalidade para um outra biblioteca chamada `qs`.
 const bodyParser = require('body-parser');
 
 app.use(bodyParser.urlencoded({ extended: false }))
+
+app.use('/add-product', (req, res) => {
+    console.log(req.body);
+    res.redirect('/')
+});
 ```
+
+Aqui você pode ver que utilizamos um método extendido pelo Express chamado `res.redirect()`,
+onde podemos redirecionar o cliente para outra rota e caso não configurarmos o status ele
+configura para o status `302` automaticamente.
 
