@@ -9,7 +9,7 @@
   - [Como os middlewares funcionam](#como-os-middlewares-funcionam)
   - [Por trás das cenas](#por-tr%C3%A1s-das-cenas)
   - [Manipulando diferentes rotas](#manipulando-diferentes-rotas)
-  - [Parseando Requisições](#parseando-requisi%C3%A7%C3%B5es)
+  - [Parseando requisições](#parseando-requisi%C3%A7%C3%B5es)
 
 
 # O que é o ExpressJS
@@ -130,7 +130,7 @@ Mas porque quando ele terminar de executar a rota `/contato` ele não executa as
 Ele não faz isso pelo seguinte motivo, essas são rotas finais e nelas utilizamos o método
 `res.send()` e não o método `next()` do nosso Middleware.
 
-## Parseando Requisições
+## Parseando requisições
 
 Podemos capturar e parsear dados encaminhados através de um formulário, o Espress
 cria um atributo chamado `body` diretamente no requisição `req`, e dessa forma não precisamos tratar
