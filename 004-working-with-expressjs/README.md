@@ -43,12 +43,12 @@ server.listen(4000);
 Com os middlewares conseguimos interceptar requisições,
 assim conseguimos tratar os dados de maneira isolada, veja o conceito:
 
-- Request 
-- Middleware [ (req, res, next) => { next(); } ] -> 
-- Middleware [ (req, res, next) => { res.send(); } ] -> res.send()
-- Response
+- request 
+- middleware [ (req, res, next) => { next(); } ] -> 
+- middleware [ (req, res, next) => { res.send(); } ] -> res.send()
+- response
 
-Um `Middleware` é nada mais que uma função que recebe a `request`, uma `response` e uma função para ir para o próximo `Middleware` chamada `next`, Veja um exemplo:
+Um `middleware` é nada mais que uma função que recebe a `request`, uma `response` e uma função para ir para o próximo `middleware` chamada `next`, Veja um exemplo:
 
 ```javascript
 app.use((req, res, next) => {
@@ -97,7 +97,7 @@ app.listen(4000);
 ## Manipulando diferentes rotas
 
 O método `app.use()` possui 4 formas diferentes de ser utilizado, uma delas vimos anteriormente,
-onde podemos passar um Middleware para qualquer requisição e agora veremos uma outra forma onde podemos
+onde podemos passar um middleware para qualquer requisição e agora veremos uma outra forma onde podemos
 informar uma *rota* e em seguida atribuir middlewares em específico para esta rota:
 
 ```javascript
@@ -128,13 +128,13 @@ começão com o caracter barra.
 Mas porque quando ele terminar de executar a rota `/contato` ele não executa as rota `/`?
 
 Ele não faz isso pelo seguinte motivo, essas são rotas finais e nelas utilizamos o método
-`res.send()` e não o método `next()` do nosso Middleware.
+`res.send()` e não o método `next()` do nosso middleware.
 
 ## Parseando requisições
 
 Podemos capturar e parsear dados encaminhados através de um formulário, o Espress
 cria um atributo chamado `body` diretamente no requisição `req`, e dessa forma não precisamos tratar
-os chunks, porém vamos precisar de um Middleware para tratar os dados para nós, se chama
+os chunks, porém vamos precisar de um middleware para tratar os dados para nós, se chama
 `bodyParser`.
 
 Utilizando o bodyParser podemos tratar diversos dados, mas por hora vamos tratar dados que
