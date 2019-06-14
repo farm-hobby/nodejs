@@ -127,7 +127,7 @@ a rota `/contato` é ignorada e o Express vai de rota em rota até encontrar uma
 que combine. Se a nossa rota `/` fosse definida antes, todas as rotas caíriam nela, pois todas
 começão com o caracter barra.
 
-Mas porque quando ele terminar de executar a rota `/contato` ele não executa as rota `/`?
+> Mas porque quando ele terminar de executar a rota `/contato` ele não executa as rota `/`?
 
 Ele não faz isso pelo seguinte motivo, essas são rotas finais e nelas utilizamos o método
 `res.send()` e não o método `next()` do nosso middleware.
