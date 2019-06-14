@@ -114,10 +114,12 @@ sequencia certa:
 ```javascript
 app.use('/contato', (req, res) => {
     // .. carregar a página de contato
+    res.send('<h1>Contact Page</h1>');
 });
 
 app.use('/', (req, res) => {
     // .. carregar home do site
+    res.send('<h1>Welcome!</h1>');
 });
 ```
 Caso nosso cliente inserir a rota `/` ela não combinará com a rota `/contato`, então 
