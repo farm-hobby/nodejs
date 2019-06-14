@@ -33,7 +33,7 @@ server.listen(4000);
 
 ## Adicionando Middlewares
 
-Com os middlewares conseguimos interceptar requisições e respostas,
+Com os middlewares conseguimos interceptar requisições,
 assim conseguimos tratar os dados de maneira isolada, veja o conceito:
 
 - Request 
