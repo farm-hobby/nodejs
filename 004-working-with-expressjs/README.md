@@ -84,6 +84,14 @@ Outra coisa importante é que não precisamos iniciar um servidor manualmente, o
 possui um método chamado `listen` que executamos diretamente de sua instancia `app` e passamos
 apenas a porta a ser ouvida, assim salvamos algum código.
 
+```javascript
+const express   = require('express');
+
+const app = express();
+
+app.listen(4000);
+```
+
 ## Manipulando diferentes rotas
 
 O método `app.use()` possui 4 formas diferentes de ser utilizado, uma delas vimos anteriormente,
