@@ -1,4 +1,4 @@
-[Home](../README.md) / Entendendo o básico
+[Home](../README.md) / Fluco de trabalho e depuração
 
 ### Sumario
 
