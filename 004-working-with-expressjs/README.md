@@ -10,6 +10,8 @@
   - [Por trás das cenas](#por-tr%C3%A1s-das-cenas)
   - [Manipulando diferentes rotas](#manipulando-diferentes-rotas)
   - [Parseando requisições](#parseando-requisi%C3%A7%C3%B5es)
+  - [Limitando a execução de middlewares apenas a POST requests](#limitando-a-execu%C3%A7%C3%A3o-de-middlewares-apenas-a-post-requests)
+  - [Utilizar Express Router](#utilizar-express-router)
 
 
 # O que é o ExpressJS
@@ -158,4 +160,15 @@ app.use('/add-product', (req, res) => {
 Aqui você pode ver que utilizamos um método extendido pelo Express chamado `res.redirect()`,
 onde podemos redirecionar o cliente para outra rota e caso não configurarmos o status ele
 configura para o status `302 (Found)` automaticamente.
+
+## Limitando a execução de middlewares apenas a POST requests
+
+```javascript
+app.post('/add-product', (req, res) => {
+    console.log(req.body);
+    res.redirect('/')
+});
+```
+
+## Utilizar Express Router
 
