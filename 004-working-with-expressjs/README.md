@@ -57,7 +57,7 @@ onde passamos um valor e ele automaticamente configura certos `Headers` como por
 
 ```javascript
 app.use((req, res, next) => {
-    res.json('<h1>Hello from Express!</h1>')
+    res.send('<h1>Hello from Express!</h1>')
 })
 ```
 
