@@ -84,8 +84,10 @@ Outra coisa importante é que não precisamos iniciar um servidor manualmente, o
 possui um método chamado `listen` que executamos diretamente de sua instancia `app` e passamos
 apenas a porta a ser ouvida, assim salvamos algum código.
 
+Exemplo:
+
 ```javascript
-const express   = require('express');
+const express = require('express');
 
 const app = express();
 
