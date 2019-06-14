@@ -2,10 +2,17 @@
 
 ### Sumario
 
-- [O que é o ExpressJS](#o-que-é-o-expressjs)
+- [O que é o ExpressJS](#o-que-%C3%A9-o-expressjs)
+  - [Instalando o ExpressJS](#instalando-o-expressjs)
+  - [Configurando o ExpressJS](#configurando-o-expressjs)
+  - [Adicionando Middlewares](#adicionando-middlewares)
+  - [Como os Middlewares funcionam](#como-os-middlewares-funcionam)
+  - [Por trás das cenas](#por-tr%C3%A1s-das-cenas)
+  - [Manipulando diferentes rotas](#manipulando-diferentes-rotas)
+  - [Parseando Requisições](#parseando-requisi%C3%A7%C3%B5es)
 
 
-# Entendendo NPM Scripts
+# O que é o ExpressJS
 
 É um framework criado com NodeJS para facilitar a construção de Web apps.
 
@@ -67,7 +74,7 @@ No exemplo acima inserimos um HTML e ele automaticamente configura informações
 Se você observar bem, não chamamos a função `next()` no final e não devemos, estamos fornecendo outra
 alternativa, estamos enviando uma *resposta*.
 
-## ExpressJS - Por trás das cenas
+## Por trás das cenas
 
 Observando o código fonte do Express conseguimos entender o porque o método `send`,
 configura automaticamente o `Content-Type`, se ele encontra uma string ele realizada
