@@ -2,16 +2,17 @@
 
 ### Sumario
 
-- [O que é o ExpressJS](#o-que-%C3%A9-o-expressjs)
-  - [Instalando o ExpressJS](#instalando-o-expressjs)
-  - [Configurando o ExpressJS](#configurando-o-expressjs)
-  - [Adicionando middlewares](#adicionando-middlewares)
-  - [Como os middlewares funcionam](#como-os-middlewares-funcionam)
-  - [Por trás das cenas](#por-tr%C3%A1s-das-cenas)
-  - [Manipulando diferentes rotas](#manipulando-diferentes-rotas)
-  - [Parseando requisições](#parseando-requisi%C3%A7%C3%B5es)
-  - [Limitando a execução de middlewares apenas a POST requests](#limitando-a-execu%C3%A7%C3%A3o-de-middlewares-apenas-a-post-requests)
-  - [Utilizar Express Router](#utilizar-express-router)
+- [O que é o ExpressJS](#O-que-%C3%A9-o-ExpressJS)
+  - [Instalando o ExpressJS](#Instalando-o-ExpressJS)
+  - [Configurando o ExpressJS](#Configurando-o-ExpressJS)
+  - [Adicionando middlewares](#Adicionando-middlewares)
+  - [Como os middlewares funcionam](#Como-os-middlewares-funcionam)
+  - [Por trás das cenas](#Por-tr%C3%A1s-das-cenas)
+  - [Manipulando diferentes rotas](#Manipulando-diferentes-rotas)
+  - [Parseando requisições](#Parseando-requisi%C3%A7%C3%B5es)
+  - [Limitando a execução de middlewares apenas a POST requests](#Limitando-a-execu%C3%A7%C3%A3o-de-middlewares-apenas-a-POST-requests)
+  - [Utilizar Express Router](#Utilizar-Express-Router)
+  - [Adicionando a página de erro 404](#Adicionando-a-p%C3%A1gina-de-erro-404)
 
 
 # O que é o ExpressJS
@@ -171,4 +172,54 @@ app.post('/add-product', (req, res) => {
 ```
 
 ## Utilizar Express Router
+
+Podemos modular nossas rotas caso nossa aplicação crescer, o `express` nos fornece um construtor de rotas
+que podemos utilizar através de `express.Router()`, com isso podemos construir rotas normalmente e 
+adicionar a nossa aplicação através do método `app.use()`, veja um exemplo a seguir:
+
+Nosso modulo que mantém as rotas do `admin.js`
+
+```javascript
+// estamos dentro de ./routes/admin
+
+const express = require('express');
+const router = express.Router();
+
+router.get('/add-product', (req, res, next) => {
+    res.send(`
+        <form action="/product" method="POST">
+            <input value="" placeholder="Inform here you message." name="message"/>
+            <button type="submit">Send</button>
+        </form>
+    `);
+});
+
+router.post('/product', (req, res, next) => {
+    console.log(req.body);
+    res.sendStatus(201);
+});
+
+module.exports = router;
+```
+Nosso arquivo principal `app.js`:
+
+```javascript
+const express       = require('express');
+const bodyParser    = require('body-parser');
+
+const app = express();
+
+const adminRoutes = require('./routes/admin');
+const shopRoutes = require('./routes/shop');
+
+app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(adminRoutes);
+app.use(shopRoutes);
+
+app.listen(3000);
+```
+
+## Adicionando a página de erro 404
+
 
