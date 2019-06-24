@@ -13,6 +13,11 @@
   - [Limitando a execução de middlewares apenas a POST requests](#Limitando-a-execu%C3%A7%C3%A3o-de-middlewares-apenas-a-POST-requests)
   - [Utilizar Express Router](#Utilizar-Express-Router)
   - [Adicionando a página de erro 404](#Adicionando-a-p%C3%A1gina-de-erro-404)
+  - [Filtrando Caminhos](#Filtrando-Caminhos)
+  - [Criando Páginas HTML](#Criando-P%C3%A1ginas-HTML)
+  - [Servindo Páginas HTML](#Servindo-P%C3%A1ginas-HTML)
+  - [Retornando uma página de 404](#Retornando-uma-p%C3%A1gina-de-404)
+  - [Utilizando funções auxiliares para navegar](#Utilizando-fun%C3%A7%C3%B5es-auxiliares-para-navegar)
 
 
 # O que é o ExpressJS
@@ -221,5 +226,70 @@ app.listen(3000);
 ```
 
 ## Adicionando a página de erro 404
+
+Agora vamos adicionar uma página de erro 404 para quando não encontrarmos uma rota em específico,
+devemos adicionar após a rota raíz `/` um middleware sem específicar uma rota, desse modo conseguimos
+direcionar o cliente para essa página, veja aseguir:
+
+```javascript
+app.use((req, res) => res.status(404).send('<h1>Page not found!</h1>'))
+```
+
+## Filtrando Caminhos
+
+Podemos prefixar as rotas que estão dentro agrupadas em sessões, como por exemplos as rotas 
+dentro de `admin.js`, veja um exemplo:
+
+```javascript
+app.use('/admin', adminRoutes);
+```
+
+Dentro de `admin.js` temos que ajustar para direcionar nosso formulário dentro da rota `/admin/add-product` para realizar o **submit** para `/admin/product` e não `/product`, veja:
+
+```javascript
+router.get('/add-product', (req, res, next) => {
+    res.send(`
+        <form action="/admin/product" method="post">
+            <input value="" name="title" />
+            <button type="submit">add product</button>
+        </form>
+    `);
+});
+```
+
+## Criando Páginas HTML
+
+Podemos criar `views` onde importaremos essas páginas para exibirmos o layout que corresponde
+a alguma rota em específico, então pode ter na nossa aplicação: `views/shop.html` e `views/add-product.html`.
+
+## Servindo Páginas HTML
+
+Para servimos nossas páginas temos que adicionar o caminho corretamente, como precisamos utilizar
+o caminho absoluto teremos que utilizar alguns recursos do node como a variável global 
+`__dirname` e o módulo `path`:
+
+```javascript
+const path = require('path');
+
+router.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'views', 'shop.html'));
+});
+```
+
+## Retornando uma página de 404
+
+```javascript
+const path = require('path');
+
+router.use((req, res) => {
+    res
+        .status(404)
+        .sendFile(path.join(__dirname, 'views', '404.html'));
+});
+```
+
+## Utilizando funções auxiliares para navegar
+
+
 
 
