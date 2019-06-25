@@ -9,7 +9,6 @@
 - [Enviando Conteúdo Dinâmico](#Enviando-Conte%C3%BAdo-Din%C3%A2mico)
 - [Convertendo HTML para Pug](#Convertendo-HTML-para-Pug)
 - [Adicionando um layout base](#Adicionando-um-layout-base)
-- [Completando o Pug Template](#Completando-o-Pug-Template)
 
 # O que é um motor de template
 
@@ -106,4 +105,21 @@ html(lang="en")
         block content
 ```
 
-# Completando o Pug Template
+```pug
+// views/shop.pug
+
+extends layouts/main-layout.pug
+
+block content
+    h1 Shop
+```
+
+Agora temos que passar de forma dinâmica os dados referentes a nossa Home:
+
+```javascript
+// routes/shop.js
+
+router.get('/', (req, res) => {
+    res.render('shop', { pageTitle: 'My Shop' })
+});
+```
