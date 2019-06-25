@@ -1,6 +1,6 @@
 const path = require('path');
 
-const express = require('express');
+const express = require('../node_modules/express');
 
 const { dirRoot } = require('../helpers/path');
 const { products } = require('./admin');
