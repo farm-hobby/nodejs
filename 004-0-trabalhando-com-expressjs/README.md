@@ -18,6 +18,7 @@
   - [Servindo Páginas HTML](#Servindo-P%C3%A1ginas-HTML)
   - [Retornando uma página de 404](#Retornando-uma-p%C3%A1gina-de-404)
   - [Utilizando funções auxiliares para navegar](#Utilizando-fun%C3%A7%C3%B5es-auxiliares-para-navegar)
+  - [Servindo arquivos estáticos](#Servindo-arquivos-est%C3%A1ticos)
 
 
 # O que é o ExpressJS
@@ -290,6 +291,55 @@ router.use((req, res) => {
 
 ## Utilizando funções auxiliares para navegar
 
+Para sempre referênciamos nosso arquivo raíz `app.js` podemos criar
+funções para nos ajudar a resolver esse problema de produtividade, então
+criaremos na raíz do projeto uma pasta chamada `./helpers/` e dentro dela
+criaremos um arquivo chamado `path.js`:
 
+```javascript
+// helpers/path.js
+const path = require('path');
 
+module.exports = path.dirname(process.mainModule.filename);
+```
 
+Agora onde precisamos informar o caminho das nossas `views` podemos fazer
+a seguinte alteração:
+
+```javascript
+// routes/admin.js
+const path = require('path');
+
+const rootDir = require('../helpers/path');
+
+router.get('/admin/add-product', (req, res) => {
+    res.sendFile(path.join(rootDir, 'views', 'add-product.html'));
+});
+```
+
+## Servindo arquivos estáticos
+
+Precisamos servir nosso arquivos estáticos de forma pública para que nossa aplicação
+possa carregar stilos, scripts, imagens, dentre outros, mas fazer isso com nodeJS puro
+é um trabalho muito árduo, por isso uma solução simples é utilizar um built-in middleware
+do expressjs chamado `static`, basta passar o caminho dos arquivos públicos que o express
+faz todo o resto.
+
+Uma boa prática é criar um diretório na raíz do projeto chamado `public/`, depois de configurado e 
+quando o servidor receber uma requisição, automaticamente servirá nossos arquivos: 
+
+```javascript
+// app.js
+const path = require('path');
+
+const express = require('express');
+
+const app = express();
+
+const { rootDir } = require('./helpers/path');
+
+// configuração do middleware para servir assets
+app.use(express.static(path.join(rootDir, 'public')));
+
+// ...aplication
+```
