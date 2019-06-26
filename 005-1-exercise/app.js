@@ -15,8 +15,8 @@ nunjucks.configure('views', {
 app.set('view engine', 'njk');
 
 // Middlewares
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // Define Routes
 const rootRoutes    = require('./routes/index');
