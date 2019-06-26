@@ -20,6 +20,11 @@ nav a {
     color: #fff;
     display: inline-block;
     margin: 0 5px;
+    text-decoration: none;
+}
+
+nav a.active {
+    text-decoration: underline;
 }
 
 main {

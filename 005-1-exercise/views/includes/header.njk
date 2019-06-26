@@ -1,6 +1,6 @@
 <header>
     <nav>
-        <a href="/" class="active">Home</a>
-        <a href="/users">User List</a>
+        <a href="/" class="{{ 'active' if path == '/' else '' }}">Home</a>
+        <a href="/users" class="{{ 'active' if path == '/users' else '' }}">User List</a>
     </nav>
 </header>

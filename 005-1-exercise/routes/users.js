@@ -4,13 +4,21 @@ const router = express.Router();
 
 const users = [];
 
-router.get('/users', (req, res) => {
-    res.render('users', { users: users });
+const PATHS = {
+    USERS: '/users'
+}
+
+router.get(PATHS.USERS, (req, res) => {
+    res.render('users', { 
+        pageTitle: 'Users', 
+        users: users,
+        path: PATHS.USERS
+    });
 });
 
-router.post('/users', (req, res) => {
+router.post(PATHS.USERS, (req, res) => {
     users.push(req.body)
-    res.redirect('/users');
+    res.redirect(PATHS.USERS);
 });
 
 module.exports = router;
