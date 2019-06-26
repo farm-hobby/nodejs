@@ -1,6 +1,6 @@
 const path = require('path');
 
-const express = require('../node_modules/express');
+const express = require('express');
 
 const { dirRoot } = require('../helpers/path');
 const { products } = require('./admin');
@@ -11,7 +11,9 @@ router.get('/', (req, res, next) => {
     res.render('shop', { 
         products, 
         pageTitle: 'Shop' ,
-        path: '/'
+        path: '/',
+        hasProducts: products.length > 0,
+        activeShop: true
     });
 });
 

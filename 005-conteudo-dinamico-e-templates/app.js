@@ -7,7 +7,7 @@ const { dirRoot } = require('./helpers/path');
 
 const app = express();
 
-app.set('view engine', 'pug');
+app.set('view engine', 'ejs');
 app.set('views', 'views')
 
 const adminRoutes = require('./routes/admin').router;
@@ -23,7 +23,7 @@ app.use(shopRoutes);
 app.use((req, res) => {
     res
         .status(404)
-        .render('404', { pageTitle: 'Page Not Found' });
+        .render('404', { pageTitle: 'Page Not Found', path: '' });
 });
 
 app.listen(4000);
