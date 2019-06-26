@@ -13,7 +13,7 @@ nunjucks.configure('views', {
 });
 
 app.set('view engine', 'njk');
-app.set('views', 'views');
+app.set('views', path.join(__dirname, 'views'));
 
 // Middlewares
 app.use(express.static(path.join(__dirname, 'public')));
