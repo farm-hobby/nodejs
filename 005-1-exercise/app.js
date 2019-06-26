@@ -19,8 +19,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // Define Routes
-const rootRoutes    = require('./routes/index');
 const usersRoutes   = require('./routes/users');
+const rootRoutes    = require('./routes/index');
 
 app.use(usersRoutes);
 app.use(rootRoutes);
