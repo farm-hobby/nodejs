@@ -1,6 +1,29 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
 body {
     background: orange;
     color: #fff;
     font: Arial;
     font-weight: bold;
+}
+
+nav {
+    padding: 20px 40px;
+    background: #000;
+}
+
+nav a {
+    color: #fff;
+    display: inline-block;
+    margin: 0 5px;
+}
+
+main {
+    padding-top: 40px;
+    margin: auto;
+    max-width: 1024px;
 }
