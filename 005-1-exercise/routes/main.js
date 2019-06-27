@@ -1,18 +1,7 @@
-const PATHS = {
-    HOME: '/'
-};
+const { getHome } = require('../controllers/main');
+const { handleNotFound } = require('../controllers/error');
 
 exports.set = (router) => {
-    router.get(PATHS.HOME, (req, res) => {
-        res.render('home', {
-            pageTitle: 'Home',
-            path: PATHS.HOME
-        });
-    });
-
-    router.use((req, res) => {
-        res
-            .status(404)
-            .render('404', { pageTitle: 'Not Found' });
-    });
+    router.get('/', getHome);
+    router.use(handleNotFound);
 };
