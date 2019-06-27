@@ -1,5 +1,9 @@
 class errorController {
 
+    constructor() {
+        this.handleNotFound = this.handleNotFound.bind(this);
+    }
+
     handleNotFound(req, res) {
         const data = {
             pageTitle: 'Not Found'

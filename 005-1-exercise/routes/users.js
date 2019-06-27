@@ -1,4 +1,7 @@
-const { getUsers, postUsers } = require('../controllers/users');
+const { 
+    getUsers, 
+    postUsers 
+} = require('../controllers/users');
 
 exports.set = (router) => {
     router.get('/users', getUsers);
