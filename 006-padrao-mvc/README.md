@@ -11,7 +11,7 @@
 
 # Padrão MVC
 
-O padrão MVC foi criado para separarmos as responsabilidades de uma aplicação, dividindo em: M de Model, V de Views e C de Controller.
+O padrão MVC foi criado para separarmos as responsabilidades de uma aplicação, dividindo em: M de Model (Regras de Negócio) , V de Views (Apresentação) e C de Controller (Intermédio entre View-Model).
 
 ## Model
 
