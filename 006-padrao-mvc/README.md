@@ -1,4 +1,4 @@
-[Home](../README.md) / Trabalhando com conteúdo dinâmico e motores de template
+[Home](../README.md) / Padrão MVC
 
 ### Sumario
 
